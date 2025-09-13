@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.10
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
@@ -33,6 +33,7 @@ jobs:
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
+
       with:
         name: School_8th_help
         path: android/MyApp/build/android/MyApp-debug.apk
