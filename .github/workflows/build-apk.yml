@@ -17,23 +17,28 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: 3.11
+
+    - name: Upgrade pip
+      run: python -m pip install --upgrade pip
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        # فقط بسته‌های لازم برای ساخت APK روی لینوکس
         pip install briefcase
         pip install -r requirements.txt
 
+    - name: Create Android project
+      run: |
+        briefcase create android --no-deps
+
     - name: Build Android APK
       run: |
-        briefcase create android
         briefcase build android
         briefcase package android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
-
       with:
         name: School_8th_help
-        path: android/MyApp/build/android/MyApp-debug.apk
+        path: android/*/build/android/*.apk
