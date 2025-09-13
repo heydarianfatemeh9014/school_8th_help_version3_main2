@@ -226,7 +226,7 @@ spotipy==2.25.1
 SQLAlchemy==2.0.35
 sqlparse==0.5.3
 srsly==2.5.0
-sswg==4.3.0
+sswg==2.3.0
 starlette==0.45.0
 sudo==1.0.0
 sympy==1.13.1
@@ -272,3 +272,4 @@ WTForms==3.2.1
 zope.event==5.0
 zope.interface==7.2
 zstandard==0.23.0
+
