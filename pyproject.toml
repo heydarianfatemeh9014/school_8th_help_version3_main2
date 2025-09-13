@@ -1,0 +1,9 @@
+[tool.briefcase]
+project_name = "ُSchool Application"
+bundle = "com.example.school"
+version = "0.1.0"
+author = "Fatemeh"
+
+[tool.briefcase.app.MyApp]
+sources = ["codes"]
+icon = "imagess/icon.png"
