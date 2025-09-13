@@ -23,6 +23,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install briefcase
+        # مطمئن شو pywin32 و Kivy Windows-only از requirements.txt حذف شدند
         pip install -r requirements.txt
 
     - name: Build Android APK
