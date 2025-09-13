@@ -233,7 +233,7 @@ sympy==1.13.1
 tensorboard==2.17.1
 tensorboard-data-server==0.7.2
 tensorflow==2.17.0
-tensorflow-intel==2.17.0
+tensorflow-intel==2.26.0
 termcolor==2.4.0
 text-unidecode==1.3
 textblob==0.18.0.post0
@@ -272,4 +272,5 @@ WTForms==3.2.1
 zope.event==5.0
 zope.interface==7.2
 zstandard==0.23.0
+
 
