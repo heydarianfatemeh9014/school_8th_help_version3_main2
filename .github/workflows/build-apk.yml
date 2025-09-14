@@ -27,9 +27,9 @@ jobs:
 
     - name: Build Android APK
       run: |
-        briefcase create school
-        briefcase build school
-        briefcase package school
+        briefcase create android
+        briefcase build android
+        briefcase package android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
