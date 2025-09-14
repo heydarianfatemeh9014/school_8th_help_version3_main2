@@ -33,7 +33,6 @@ jobs:
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
-
       with:
         name: School_8th_help
         path: android/MyApp/build/android/MyApp-debug.apk
