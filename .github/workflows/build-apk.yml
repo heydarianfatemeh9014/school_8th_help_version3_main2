@@ -27,12 +27,12 @@ jobs:
 
     - name: Build Android APK
       run: |
-        briefcase create android
-        briefcase build android
-        briefcase package android
+        briefcase create school
+        briefcase build school
+        briefcase package school
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: School_8th_help
-        path: android/MyApp/build/android/MyApp-debug.apk
+        path: android/school/build/android/school-debug.apk
