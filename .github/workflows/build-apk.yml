@@ -1,12 +1,10 @@
-name: Build APK
+name: Build APK with Buildozer
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -16,9 +14,10 @@ jobs:
       ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
           sudo apt update
           sudo apt install -y \
@@ -40,22 +39,26 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install buildozer cython==0.29.33 git+https://github.com/kivy/plyer.git
 
-      - name: Download Android SDK Command Line Tools
+      - name: Install Android SDK + NDK
         run: |
           mkdir -p $ANDROID_HOME/cmdline-tools
           curl -o sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
           unzip sdk-tools.zip -d $ANDROID_HOME/cmdline-tools
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
+
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools"
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33"
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "build-tools;33.0.2"
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "ndk;25.2.9519653"
 
       - name: Build APK
         run: |
           buildozer android debug
           ls -lh bin/
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: school_apk
+          name: my_app_apk
           path: bin/*.apk
-          retention-days: 3
+          retention-days: 7
