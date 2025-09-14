@@ -1,4 +1,4 @@
-name: Build APK with Dockerized Buildozer
+name: Build APK with Briefcase
 
 on:
   push:
@@ -11,23 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Pull Buildozer image
-        run: docker pull gabrielcnr/buildozer
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-      - name: Build APK inside container
+      - name: Install dependencies
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/home/user/app \
-            -w /home/user/app \
-            gabrielcnr/buildozer \
-            buildozer android debug
+          python -m pip install --upgrade pip
+          pip install briefcase
+
+      - name: Build Android APK
+        run: |
+          briefcase create android
+          briefcase build android
+          briefcase package android
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: android_apk
-          path: bin/*.apk
-          retention-days: 7
+          name: my_python_app
+          path: "android/*/build/outputs/apk/debug/*.apk"
