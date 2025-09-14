@@ -1,3 +1,6 @@
+[tool.briefcase]
+version = "0.3.25"
+
 [tool.briefcase.app.myapp]
 formal_name = "MyApp"
 description = "An awesome cross-platform app built with Python"
@@ -5,8 +8,14 @@ author = "Fatemeh Heydarian"
 author_email = "heydarianfatemeh9014@gmail.com"
 license = "MIT"
 url = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
-
-
-[tool.briefcase.app.MyApp]
 sources = ["codes"]
 icon = "imagess/icon.png"
+
+# تنظیمات اندروید
+[tool.briefcase.app.myapp.android]
+package = "com.fatemeh.myapp"
+version = "0.1.0"
+requirements = ["python3", "tkinter", "Pillow"]
+sdk_min = 21
+sdk_target = 33
+orientation = "portrait"
