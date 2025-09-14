@@ -37,8 +37,12 @@ jobs:
         id: find_apk
         run: |
           APK=$(find ./school/build/android/ -type f -name "*.apk" | head -n 1)
+          if [ -z "$APK" ]; then
+            echo "No APK found, exiting..."
+            exit 1
+          fi
           echo "apk_path=$APK" >> $GITHUB_ENV
-
+      
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
