@@ -4,19 +4,19 @@
 title = My Application
 
 # (str) Package name
-package.name = myapp
+package.name = school_grades_help
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
 
 # (str) Source code where the main.py live
-source.dir = .
+source.dir = codes
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,jpeg
 
 # (list) List of inclusions using pattern matching
-#source.include_patterns = assets/*,images/*.png
+source.include_patterns = imagess/*
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec
@@ -38,6 +38,7 @@ version = 0.1
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 requirements = python3,kivy
+
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -101,28 +102,30 @@ fullscreen = 0
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
-#android.minapi = 21
+android.minapi = 21
 
 # (int) Android SDK version to use
-#android.sdk = 20
-
+#android.sdk_manager_path = /mnt/d/school_8th_help/android-sdk/tools/bin/sdkmanager
 # (str) Android NDK version to use
-#android.ndk = 23b
+#android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
+
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 #android.private_storage = True
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
-#android.ndk_path =
-
+android.ndk_path =/mnt/d/school_8th_help/android-ndk-r25b
+android.ndk_version = 25.2.9519653
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-#android.sdk_path =
+android.sdk_path = /mnt/d/school_8th_help/android-sdk
+android.build_tools_version = 33.0.2
+#android.platform = android-33
 
 # (str) ANT directory (if empty, it will be automatically downloaded.)
 #android.ant_path =
@@ -130,7 +133,7 @@ fullscreen = 0
 # (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
-# android.skip_update = False
+android.skip_update = True
 
 # (bool) If True, then automatically accept SDK license
 # agreements. This is intended for automation only. If set to False,
@@ -186,7 +189,8 @@ fullscreen = 0
 # Either form may be used, and assets need not be in 'source.include_exts'.
 # 1) android.add_assets = source_asset_relative_path
 # 2) android.add_assets = source_asset_path:destination_asset_relative_path
-#android.add_assets =
+android.add_assets = imagess
+
 
 # (list) Put these files or directories in the apk res directory.
 # The option may be used in three ways, the value may contain one or zero ':'
@@ -336,7 +340,7 @@ android.allow_backup = True
 #p4a.hook =
 
 # (str) Bootstrap to use for android builds
-# p4a.bootstrap = sdl2
+p4a.bootstrap = sdl2
 
 # (int) port number to specify an explicit --port= p4a argument (eg for bootstrap flask)
 #p4a.port =
@@ -400,6 +404,7 @@ ios.codesign.allowed = false
 
 
 [buildozer]
+
 
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
 log_level = 2
