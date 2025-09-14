@@ -31,16 +31,19 @@ jobs:
 
       - name: Build APK with Briefcase
         run: |
-          briefcase create android
-          briefcase build android
-          briefcase package android
+          briefcase create android --verbose
+          briefcase build android --verbose
+          briefcase package android --verbose
 
-      - name: List APKs (for debug)
-        run: ls -R school/build/android/
+      - name: Find APK
+        id: find_apk
+        run: |
+          APK_PATH=$(find ./school/build/android/ -type f -name "*.apk" | head -n 1)
+          echo "apk_path=$APK_PATH" >> $GITHUB_ENV
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: school_apk
-          path: school/build/android/gradle/outputs/apk/debug/*.apk
+          path: ${{ env.apk_path }}
           retention-days: 3
