@@ -1,34 +1,19 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[project]
-name = "school"
-version = "0.1.0"
-description = "An awesome cross-platform app built with Python"
-readme = "README.md"
-requires-python = ">=3.10"
-authors = [
-  {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
-]
-license = {text = "MIT"}
-keywords = ["school", "education", "python", "tkinter"]
-classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python :: 3",
-  "Operating System :: OS Independent"
-]
-urls = {Homepage = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"}
-
-[tool.briefcase]
-version = "0.3.25"
-
 [tool.briefcase.app.school]
 formal_name = "School"
-description = "An awesome cross-platform app built with Python"
+description = """
+School is a powerful cross-platform educational app designed for 8th grade students.
+It helps students organize notes, practice exercises, track progress, and enhance learning
+through interactive tools and AI-powered study aids.
+"""
 author = "Fatemeh Heydarian"
 author_email = "heydarianfatemeh9014@gmail.com"
-license = "MIT"
+license = """
+MIT License with the following features:
+- Free to use for educational purposes
+- Modifications and redistribution allowed under same license
+- No warranty or liability for any damages
+- Credit to original author required when redistributed
+"""
 url = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
 sources = ["codes"]
 icon = "imagess/icon.png"
@@ -36,19 +21,13 @@ icon = "imagess/icon.png"
 [tool.briefcase.app.school.android]
 package = "com.fatemeh.school"
 version = "0.1.0"
-orientation = "portrait"
-sdk_min = 21
-sdk_target = 33
-
 requirements = [
     "python3",
     "tkinter",
     "Pillow",
-    # --- Core ML ---
     "tensorflow==2.17.0",
     "tensorboard==2.17.1",
     "tf_keras==2.17.0",
-    # --- Extra ML/NLP ---
     "torch==2.6.0",
     "transformers==4.48.0",
     "scikit-learn==1.6.1",
@@ -58,29 +37,26 @@ requirements = [
     "matplotlib==3.9.2",
     "spacy==3.8.3",
     "sswg==2.3.0",
-    # --- Web / API ---
     "Django==5.1.4",
     "Flask==3.0.3",
     "fastapi==0.115.12",
     "uvicorn==0.34.0",
     "gunicorn==23.0.0",
-    # --- GUI / Tools ---
     "auto-py-to-exe==2.45.1",
     "briefcase==0.3.25",
     "buildozer==1.5.0",
     "customtkinter==5.2.2",
     "cx_Freeze==7.2.8",
-    "pyinstaller==6.11.1",
+    "PyInstaller==6.11.1",
     "pygame==2.6.0",
     "kivy==2.3.0",
-    # --- Audio / Vision ---
     "opencv-python==4.10.0.84",
+    "pillow==10.4.0",
     "SpeechRecognition==3.10.4",
     "gTTS==2.5.3",
     "mtcnn==0.1.1",
     "deepface==0.0.93",
     "retina-face==0.0.17",
-    # --- Utilities ---
     "requests==2.32.3",
     "beautifulsoup4==4.12.3",
     "lxml==5.3.0",
@@ -91,3 +67,6 @@ requirements = [
     "setuptools>=65.5.0",
     "wheel"
 ]
+sdk_min = 21
+sdk_target = 33
+orientation = "portrait"
