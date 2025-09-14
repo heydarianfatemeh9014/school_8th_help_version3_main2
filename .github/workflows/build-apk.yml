@@ -1,4 +1,4 @@
-name: Build APK (Dockerized Buildozer)
+name: Build APK with Dockerized Buildozer
 
 on:
   push:
@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Build APK with Buildozer Docker
+      - name: Pull Buildozer image
+        run: docker pull gabrielcnr/buildozer
+
+      - name: Build APK inside container
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/home/user/app \
             -w /home/user/app \
-            kivy/buildozer \
+            gabrielcnr/buildozer \
             buildozer android debug
 
       - name: Upload APK
