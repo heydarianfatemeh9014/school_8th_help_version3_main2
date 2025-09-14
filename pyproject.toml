@@ -1,5 +1,44 @@
-[tool.briefcase.app.myapp]
-formal_name = "MyApp"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "school_8th_help"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "An awesome cross-platform app built with Python"
+readme = "README.md"  # اگر README داری اسمشو درست بزار
+license = "MIT"
+authors = [
+    {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
+]
+keywords = ["school", "education", "helper", "python", "tkinter"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Education",
+    "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
+Repository = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
+"Bug Tracker" = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2/issues"
+Documentation = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2#readme"
+
+[project.scripts]
+# اگر فایل اصلی برنامه‌ی CLI داری، اینجا قرار بده
+school-cli = "codes.main:main"  # <-- اینو باید با فایل پایتون اصلی CLIت عوض کنی
+
+[project.gui-scripts]
+# فایل اصلی GUI با Tkinter
+school-gui = "codes.main:main_gui"  # <-- اینم باید با فایل پایتون اصلی GUIت عوض بشه
+
+[tool.briefcase]
+version = "0.3.25"
+
+[tool.briefcase.app.school_8th_help]
+formal_name = "School 8th Help"
 description = "An awesome cross-platform app built with Python"
 author = "Fatemeh Heydarian"
 author_email = "heydarianfatemeh9014@gmail.com"
@@ -8,8 +47,8 @@ url = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
 sources = ["codes"]
 icon = "imagess/icon.png"
 
-[tool.briefcase.app.myapp.android]
-package = "com.fatemeh.myapp"
+[tool.briefcase.app.school_8th_help.android]
+package = "com.fatemeh.school8thhelp"
 version = "0.1.0"
 requirements = ["python3", "tkinter", "Pillow"]
 sdk_min = 21
