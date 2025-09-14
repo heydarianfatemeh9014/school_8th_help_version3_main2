@@ -13,23 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # گیت کلون پروژه
+      # Checkout repository
       - uses: actions/checkout@v4
 
-      # نصب پایتون
+      # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # نصب Java (Gradle نیاز داره)
+      # Setup Java 17 for Gradle
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # نصب dependencies ضروری
+      # Install Linux dependencies
       - name: Install Linux dependencies
         run: |
           sudo apt update
@@ -37,27 +37,27 @@ jobs:
           libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev \
           libavcodec-dev libunwind-dev zlib1g-dev libsqlite3-dev sqlite3 bzip2 libbz2-dev \
           openssl libgdbm-dev libgdbm-compat-dev liblzma-dev libreadline-dev uuid-dev \
-          libgstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good zip unzip \
-          autoconf libtool pkg-config libncurses5-dev libncursesw5-dev cmake libffi-dev \
-          libssl-dev automake
+          libgstreamer1.0-0 libgstreamer1.0-dev gstreamer1.0-plugins-base \
+          gstreamer1.0-plugins-good zip unzip autoconf libtool pkg-config libncurses5-dev \
+          libncursesw5-dev cmake libffi-dev libssl-dev automake
 
-      # نصب Buildozer و Cython و plyer
+      # Install Python packages
       - name: Install Python packages
         run: |
           pip install --upgrade pip
           pip install buildozer cython==0.29.33 git+https://github.com/kivy/plyer.git
 
-      # پاک کردن هر build قبلی
+      # Clean previous build
       - name: Clean previous build
         run: |
           rm -rf .buildozer bin
 
-      # بیلد APK با Buildozer (فقط arm64-v8a برای جلوگیری از مشکل معماری)
+      # Build APK
       - name: Build APK
         run: |
           buildozer android debug android_arch=arm64-v8a
 
-      # آپلود APK ساخته شده
+      # Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
