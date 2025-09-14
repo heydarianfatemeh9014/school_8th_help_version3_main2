@@ -1,32 +1,69 @@
-name: Build APK
+name: Build Android APK
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      # 1️⃣ گرفتن سورس کد
+      - uses: actions/checkout@v4
 
+      # 2️⃣ نصب Python مناسب
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
-      - name: Install Briefcase
-        run: pip install briefcase
+      # 3️⃣ کش کردن pip packages
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-      - name: Build Android APK
+      # 4️⃣ نصب پیش‌نیازهای لینوکس
+      - name: Install dependencies
         run: |
-          briefcase create android
-          briefcase build android
-          briefcase package android
+          sudo apt update
+          sudo apt install -y \
+            build-essential git python3-dev ffmpeg \
+            libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+            libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev \
+            libsqlite3-dev sqlite3 bzip2 libbz2-dev openssl libgdbm-dev \
+            libgdbm-compat-dev liblzma-dev libreadline-dev uuid-dev \
+            zip unzip autoconf libtool pkg-config libncurses5-dev cmake \
+            libffi-dev libssl-dev automake default-jdk
 
+      # 5️⃣ نصب Buildozer و Cython
+      - name: Install Buildozer
+        run: |
+          pip install --upgrade pip
+          pip install buildozer cython==0.29.33
+
+      # 6️⃣ پاکسازی بیلد قبلی
+      - name: Clean previous build
+        run: |
+          rm -rf .buildozer bin
+
+      # 7️⃣ ساخت APK
+      - name: Build APK
+        run: |
+          yes | buildozer android debug
+
+      # 8️⃣ آپلود APK خروجی
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: school-apk
-          path: "build/android/*/outputs/**/*.apk"
-
+          name: school_apk
+          path: bin/*.apk
+          retention-days: 3
