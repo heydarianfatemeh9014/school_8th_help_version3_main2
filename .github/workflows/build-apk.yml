@@ -1,31 +1,22 @@
-name: Build and Upload APK
+name: Build APK
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
-  build-apk:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Install system dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y python3-pip openjdk-17-jdk git wget unzip curl
-
       - name: Install Briefcase
-        run: pip install briefcase==0.3.25
+        run: pip install briefcase
 
       - name: Build Android APK
         run: |
@@ -33,19 +24,8 @@ jobs:
           briefcase build android
           briefcase package android
 
-      - name: Locate APK
-        id: find_apk
-        run: |
-          APK=$(find ./school/build/android/ -type f -name "*.apk" | head -n 1)
-          if [ -z "$APK" ]; then
-            echo "No APK found, exiting..."
-            exit 1
-          fi
-          echo "apk_path=$APK" >> $GITHUB_ENV
-      
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
         with:
           name: school-apk
-          path: ${{ env.apk_path }}
-          retention-days: 3
+          path: "build/android/*/outputs/**/*.apk"
