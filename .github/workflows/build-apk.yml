@@ -60,7 +60,7 @@ jobs:
             libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev libunwind-dev zlib1g-dev \
             libsqlite3-dev sqlite3 bzip2 libbz2-dev openssl libgdbm-dev libgdbm-compat-dev liblzma-dev \
             libreadline-dev uuid-dev libgstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
-            zip unzip autoconf libtool pkg-config libncurses5-dev libncursesw5-dev libtinfo5 cmake \
+            zip unzip autoconf libtool pkg-config libncurses5-dev libncursesw5-dev cmake \
             libffi-dev libssl-dev automake
 
       - name: Setup Java 17 required by Gradle
