@@ -1,8 +1,11 @@
-[tool.briefcase]
-project_name = "ُSchool Application"
-bundle = "com.example.school"
-version = "0.1.0"
-author = "Fatemeh"
+[tool.briefcase.app.myapp]
+formal_name = "MyApp"
+description = "An awesome cross-platform app built with Python"
+author = "Fatemeh Heydarian"
+author_email = "example@email.com"
+license = "MIT"
+url = "https://github.com/username/myapp"
+
 
 [tool.briefcase.app.MyApp]
 sources = ["codes"]
