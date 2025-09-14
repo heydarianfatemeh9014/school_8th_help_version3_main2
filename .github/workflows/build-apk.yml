@@ -81,6 +81,7 @@ jobs:
 
       - name: Build with Buildozer
         id: buildozer
+        working-directory: ${{ github.workspace }}
         run: |
           yes | buildozer -v android debug
 
