@@ -3,42 +3,28 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "school_8th_help"
+name = "school"
 version = "0.1.0"
-requires-python = ">=3.10"
 description = "An awesome cross-platform app built with Python"
-readme = "README.md"  # اگر README داری اسمشو درست بزار
-license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
 authors = [
-    {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
+  {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
 ]
-keywords = ["school", "education", "helper", "python", "tkinter"]
+license = {text = "MIT"}
+keywords = ["school", "education", "python", "tkinter"]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3.10",
-    "Topic :: Education",
-    "Operating System :: OS Independent"
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
 ]
-
-[project.urls]
-Homepage = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
-Repository = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
-"Bug Tracker" = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2/issues"
-Documentation = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2#readme"
-
-[project.scripts]
-# اگر فایل اصلی برنامه‌ی CLI داری، اینجا قرار بده
-school-cli = "codes.main:main"  # <-- اینو باید با فایل پایتون اصلی CLIت عوض کنی
-
-[project.gui-scripts]
-# فایل اصلی GUI با Tkinter
-school-gui = "codes.main:main_gui"  # <-- اینم باید با فایل پایتون اصلی GUIت عوض بشه
+urls = {Homepage = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"}
 
 [tool.briefcase]
 version = "0.3.25"
 
-[tool.briefcase.app.school_8th_help]
-formal_name = "School 8th Help"
+[tool.briefcase.app.school]
+formal_name = "School"
 description = "An awesome cross-platform app built with Python"
 author = "Fatemeh Heydarian"
 author_email = "heydarianfatemeh9014@gmail.com"
@@ -47,10 +33,61 @@ url = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
 sources = ["codes"]
 icon = "imagess/icon.png"
 
-[tool.briefcase.app.school_8th_help.android]
-package = "com.fatemeh.school8thhelp"
+[tool.briefcase.app.school.android]
+package = "com.fatemeh.school"
 version = "0.1.0"
-requirements = ["python3", "tkinter", "Pillow"]
+orientation = "portrait"
 sdk_min = 21
 sdk_target = 33
-orientation = "portrait"
+
+requirements = [
+    "python3",
+    "tkinter",
+    "Pillow",
+    # --- Core ML ---
+    "tensorflow==2.17.0",
+    "tensorboard==2.17.1",
+    "tf_keras==2.17.0",
+    # --- Extra ML/NLP ---
+    "torch==2.6.0",
+    "transformers==4.48.0",
+    "scikit-learn==1.6.1",
+    "scipy==1.14.1",
+    "pandas==2.2.2",
+    "numpy==1.26.4",
+    "matplotlib==3.9.2",
+    "spacy==3.8.3",
+    "sswg==2.3.0",
+    # --- Web / API ---
+    "Django==5.1.4",
+    "Flask==3.0.3",
+    "fastapi==0.115.12",
+    "uvicorn==0.34.0",
+    "gunicorn==23.0.0",
+    # --- GUI / Tools ---
+    "auto-py-to-exe==2.45.1",
+    "briefcase==0.3.25",
+    "buildozer==1.5.0",
+    "customtkinter==5.2.2",
+    "cx_Freeze==7.2.8",
+    "pyinstaller==6.11.1",
+    "pygame==2.6.0",
+    "kivy==2.3.0",
+    # --- Audio / Vision ---
+    "opencv-python==4.10.0.84",
+    "SpeechRecognition==3.10.4",
+    "gTTS==2.5.3",
+    "mtcnn==0.1.1",
+    "deepface==0.0.93",
+    "retina-face==0.0.17",
+    # --- Utilities ---
+    "requests==2.32.3",
+    "beautifulsoup4==4.12.3",
+    "lxml==5.3.0",
+    "psutil==7.0.0",
+    "schedule==1.2.2",
+    "regex==2024.9.11",
+    "tqdm==4.66.5",
+    "setuptools>=65.5.0",
+    "wheel"
+]
