@@ -1,10 +1,10 @@
 name: Build and Upload APK
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build-apk:
@@ -22,28 +22,26 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip openjdk-17-jdk git unzip wget curl
+          sudo apt install -y python3-pip openjdk-17-jdk git wget unzip curl
 
       - name: Install Briefcase
-        run: |
-          pip install --upgrade pip
-          pip install briefcase==0.3.25
+        run: pip install briefcase==0.3.25
 
-      - name: Build APK with Briefcase
+      - name: Build Android APK
         run: |
-          briefcase create android --verbose
-          briefcase build android --verbose
-          briefcase package android --verbose
+          briefcase create android
+          briefcase build android
+          briefcase package android
 
-      - name: Find APK
+      - name: Locate APK
         id: find_apk
         run: |
-          APK_PATH=$(find ./school/build/android/ -type f -name "*.apk" | head -n 1)
-          echo "apk_path=$APK_PATH" >> $GITHUB_ENV
+          APK=$(find ./school/build/android/ -type f -name "*.apk" | head -n 1)
+          echo "apk_path=$APK" >> $GITHUB_ENV
 
-      - name: Upload APK artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: school_apk
+          name: school-apk
           path: ${{ env.apk_path }}
           retention-days: 3
