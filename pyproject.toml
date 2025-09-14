@@ -1,6 +1,3 @@
-[tool.briefcase]
-version = "0.3.25"
-
 [tool.briefcase.app.myapp]
 formal_name = "MyApp"
 description = "An awesome cross-platform app built with Python"
@@ -11,7 +8,6 @@ url = "https://github.com/heydarianfatemeh9014/school_8th_help_version3_main2"
 sources = ["codes"]
 icon = "imagess/icon.png"
 
-# تنظیمات اندروید
 [tool.briefcase.app.myapp.android]
 package = "com.fatemeh.myapp"
 version = "0.1.0"
