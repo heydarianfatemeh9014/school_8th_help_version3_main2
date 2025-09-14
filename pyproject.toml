@@ -11,13 +11,13 @@ requires-python = ">=3.10"
 authors = [
   {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
 ]
-license = {file = "LICENSE"}    # ← استفاده از فایل LICENSE
+license = {file = "LICENSE"}
 keywords = ["education", "school", "8th grade", "learning"]
 
 [tool.briefcase]
 version = "0.3.25"
-bundle = "com.fatemeh"        # ← اضافه شد
-project_name = "school"        # ← اضافه شد
+bundle = "com.fatemeh"
+project_name = "school"
 
 [tool.briefcase.app.school]
 formal_name = "School App"
