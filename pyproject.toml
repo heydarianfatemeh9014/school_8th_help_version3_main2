@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 authors = [
   {name = "Fatemeh Heydarian", email = "heydarianfatemeh9014@gmail.com"}
 ]
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 keywords = ["education", "school", "8th grade", "learning"]
 
 [tool.briefcase]
